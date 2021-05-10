@@ -1,0 +1,20 @@
+<library path="lib/libswarm_interaction">
+	<class name="swarm_interaction/BehaviorInformRobots" type="swarm_interaction::BehaviorInformRobots"
+		base_class_type="nodelet::Nodelet">
+		<description>
+			BehaviorInformRobots.
+		</description>
+	</class>
+	<class name="swarm_interaction/BehaviorPayAttentionToRobotMessages" type="swarm_interaction::BehaviorPayAttentionToRobotMessages"
+		base_class_type="nodelet::Nodelet">
+		<description>
+			BehaviorPayAttentionToRobotMessages.
+		</description>
+	</class>
+	<class name="swarm_interaction/BehaviorInformPositionToRobots" type="swarm_interaction::BehaviorInformPositionToRobots"
+		base_class_type="nodelet::Nodelet">
+		<description>
+			BehaviorInformPositionToRobots.
+		</description>
+	</class>
+</library>
