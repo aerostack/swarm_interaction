@@ -36,9 +36,14 @@
 #include <pluginlib/class_list_macros.h>
 #include <ros/ros.h>
 
-namespace swarm_interaction
-{
-BehaviorPayAttentionToRobotMessages::BehaviorPayAttentionToRobotMessages() : BehaviorExecutionController() {
+int main(int argc, char** argv){
+  ros::init(argc, argv, ros::this_node::getName());
+  std::cout << "Node: " << ros::this_node::getName() << " started" << std::endl;
+  BehaviorPayAttentionToRobotMessages behavior;
+  behavior.start();
+  return 0;
+}
+BehaviorPayAttentionToRobotMessages::BehaviorPayAttentionToRobotMessages() : BehaviorExecutionManager() {
  setName("pay_attention_to_robot_messages"); 
  setExecutionGoal(ExecutionGoals::KEEP_RUNNING); 
 }
@@ -115,8 +120,3 @@ void BehaviorPayAttentionToRobotMessages::socialCommunicationChannelCallback(
   
 
 }
-
-
-
-}
-PLUGINLIB_EXPORT_CLASS(swarm_interaction::BehaviorPayAttentionToRobotMessages, nodelet::Nodelet)

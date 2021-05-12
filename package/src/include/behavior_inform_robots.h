@@ -43,18 +43,16 @@
 // ROS
 #include "std_srvs/Empty.h"
 #include <geometry_msgs/Vector3Stamped.h>
-#include <nodelet/nodelet.h>
 #include <ros/ros.h>
 
 // Aerostack msgs
 #include <behavior_execution_manager_msgs/BehaviorActivationFinished.h>
 #include <aerostack_msgs/SocialCommunicationStatement.h>
 // Aerostack libraries
-#include <behavior_execution_controller.h>
+#include <BehaviorExecutionManager.h>
 #include <yaml-cpp/yaml.h>
-namespace swarm_interaction
-{
-class BehaviorInformRobots : public BehaviorExecutionController
+
+class BehaviorInformRobots : public BehaviorExecutionManager
 {
   // Constructor
 public:
@@ -80,7 +78,7 @@ private:
 
 
 private:
-  // BehaviorExecutionController
+  // BehaviorExecutionManager
   void onConfigure();
   void onActivate();
   void onDeactivate();
@@ -91,6 +89,5 @@ private:
   void checkProcesses();
 
 };
-}
 
 #endif

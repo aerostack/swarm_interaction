@@ -31,9 +31,8 @@ set(SWARM_INTERACTION_SOURCE_FILES
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-  nodelet
   std_msgs
-  behavior_execution_controller
+  behavior_execution_manager
   behavior_execution_manager_msgs
   droneMsgsROS
   geometry_msgs
@@ -54,9 +53,8 @@ catkin_package(
   LIBRARIES ${PROJECT_NAME}
   CATKIN_DEPENDS 
   roscpp 
-  nodelet
   std_msgs
-  behavior_execution_controller
+  behavior_execution_manager
   behavior_execution_manager_msgs
   droneMsgsROS
   geometry_msgs
@@ -76,13 +74,18 @@ include_directories(
 )
 
 ## Declare a C++ library
-add_library(swarm_interaction
-  src/source/behavior_inform_robots.cpp
-  src/source/behavior_pay_attention_to_robot_messages.cpp
-  src/source/behavior_inform_position_to_robots.cpp
-)
-target_link_libraries(swarm_interaction ${catkin_LIBRARIES})
-target_link_libraries(swarm_interaction yaml-cpp)
+add_executable(BehaviorInformPositionToRobots ${SWARM_INTERACTION_SOURCE_DIR}/behavior_inform_position_to_robots.cpp)
+target_link_libraries(BehaviorInformPositionToRobots ${catkin_LIBRARIES})
+target_link_libraries(BehaviorInformPositionToRobots yaml-cpp)
+add_executable(BehaviorInformRobots ${SWARM_INTERACTION_SOURCE_DIR}/behavior_inform_robots.cpp)
+target_link_libraries(BehaviorInformRobots ${catkin_LIBRARIES})
+target_link_libraries(BehaviorInformRobots yaml-cpp)
+add_executable(BehaviorPayAttentionToRobotMessages ${SWARM_INTERACTION_SOURCE_DIR}/behavior_pay_attention_to_robot_messages.cpp)
+target_link_libraries(BehaviorPayAttentionToRobotMessages ${catkin_LIBRARIES})
+target_link_libraries(BehaviorPayAttentionToRobotMessages yaml-cpp)
 if(catkin_EXPORTED_LIBRARIES)
-  add_dependencies(swarm_interaction ${catkin_EXPORTED_LIBRARIES})
+  add_dependencies(BehaviorInformPositionToRobots ${catkin_EXPORTED_LIBRARIES})
+  add_dependencies(BehaviorInformRobots ${catkin_EXPORTED_LIBRARIES})
+  add_dependencies(BehaviorPayAttentionToRobotMessages ${catkin_EXPORTED_LIBRARIES})
 endif()
+

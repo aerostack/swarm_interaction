@@ -35,9 +35,15 @@
 #include "../include/behavior_inform_robots.h"
 #include <pluginlib/class_list_macros.h>
 
-namespace swarm_interaction
-{
-BehaviorInformRobots::BehaviorInformRobots() : BehaviorExecutionController() 
+int main(int argc, char** argv){
+  ros::init(argc, argv, ros::this_node::getName());
+  std::cout << "Node: " << ros::this_node::getName() << " started" << std::endl;
+  BehaviorInformRobots behavior;
+  behavior.start();
+  return 0;
+}
+
+BehaviorInformRobots::BehaviorInformRobots() : BehaviorExecutionManager() 
 { 
   setName("inform_robots"); 
 }
@@ -76,7 +82,7 @@ void BehaviorInformRobots::onActivate()
   message.content = out.c_str();
 
   social_communication_channel_pub.publish(message);
-  BehaviorExecutionController::setTerminationCause(behavior_execution_manager_msgs::BehaviorActivationFinished::GOAL_ACHIEVED);
+  BehaviorExecutionManager::setTerminationCause(behavior_execution_manager_msgs::BehaviorActivationFinished::GOAL_ACHIEVED);
 }
 
 void BehaviorInformRobots::onDeactivate()
@@ -110,7 +116,3 @@ void BehaviorInformRobots::checkProcesses()
 { 
  
 }
-
-
-}
-PLUGINLIB_EXPORT_CLASS(swarm_interaction::BehaviorInformRobots, nodelet::Nodelet)

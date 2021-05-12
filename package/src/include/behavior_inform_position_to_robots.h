@@ -41,7 +41,6 @@
 #include <tuple>
 // ROS
 #include "std_srvs/Empty.h"
-#include <nodelet/nodelet.h>
 #include <ros/ros.h>
 
 // Aerostack msgs
@@ -51,11 +50,10 @@
 #include "geometry_msgs/PoseStamped.h"
 
 // Aerostack libraries
-#include <behavior_execution_controller.h>
+#include <BehaviorExecutionManager.h>
 #include <yaml-cpp/yaml.h>
-namespace swarm_interaction
-{
-class BehaviorInformPositionToRobots : public BehaviorExecutionController
+
+class BehaviorInformPositionToRobots : public BehaviorExecutionManager
 {
   // Constructor
 public:
@@ -90,7 +88,7 @@ private:
   int numberOfStepsBeforePublished; 
 
 private:
-  // BehaviorExecutionController
+  // BehaviorExecutionManager
   void onConfigure();
   void onActivate();
   void onDeactivate();
@@ -103,6 +101,5 @@ private:
   void poseCallback(const geometry_msgs::PoseStamped& pose);
 
 };
-}
 
 #endif

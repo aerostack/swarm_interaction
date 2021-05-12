@@ -43,7 +43,6 @@
 #include <tuple>
 // ROS
 #include "std_srvs/Empty.h"
-#include <nodelet/nodelet.h>
 #include <ros/ros.h>
 
 
@@ -54,13 +53,11 @@
 
 
 // Aerostack libraries
-#include <behavior_execution_controller.h>
+#include <BehaviorExecutionManager.h>
 // Others
 #include <yaml-cpp/yaml.h>
 
-namespace swarm_interaction
-{
-class BehaviorPayAttentionToRobotMessages : public BehaviorExecutionController
+class BehaviorPayAttentionToRobotMessages : public BehaviorExecutionManager
 {
   // Constructor
 public:
@@ -88,7 +85,7 @@ private:
 
 private:
 
-  // BehaviorExecutionController
+  // BehaviorExecutionManager
   bool checkSituation();
   void checkGoal();
   void checkProgress();
@@ -102,6 +99,5 @@ private:
   void socialCommunicationChannelCallback(const aerostack_msgs::SocialCommunicationStatement &message);
 
 };
-}
 
 #endif

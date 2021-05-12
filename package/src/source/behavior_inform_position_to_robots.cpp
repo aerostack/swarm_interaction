@@ -35,9 +35,15 @@
 #include "../include/behavior_inform_position_to_robots.h"
 #include <pluginlib/class_list_macros.h>
 
-namespace swarm_interaction
-{
-BehaviorInformPositionToRobots::BehaviorInformPositionToRobots() : BehaviorExecutionController() 
+int main(int argc, char** argv){
+  ros::init(argc, argv, ros::this_node::getName());
+  std::cout << "Node: " << ros::this_node::getName() << " started" << std::endl;
+  BehaviorInformPositionToRobots behavior;
+  behavior.start();
+  return 0;
+}
+
+BehaviorInformPositionToRobots::BehaviorInformPositionToRobots() : BehaviorExecutionManager() 
 { 
   setName("inform_position_to_robots"); 
   setExecutionGoal(ExecutionGoals::KEEP_RUNNING); 
@@ -119,7 +125,3 @@ void BehaviorInformPositionToRobots::checkProcesses()
 { 
  
 }
-
-
-}
-PLUGINLIB_EXPORT_CLASS(swarm_interaction::BehaviorInformPositionToRobots, nodelet::Nodelet)

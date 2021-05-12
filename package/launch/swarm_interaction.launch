@@ -26,13 +26,9 @@
              <param name="~message_from_robot"                   value="$(arg message_from_robot)"                 type="str" />
              <param name="~pose_topic"                          value="$(arg pose_topic)"                         type="str" />
            
-       <node pkg="nodelet" type="nodelet" args="manager" name="swarm_interaction_manager" output="screen" />
-       <node pkg="nodelet" type="nodelet" args="load swarm_interaction/BehaviorInformRobots swarm_interaction_manager"
-        name="behavior_inform_robots" output="screen"/>
-       <node pkg="nodelet" type="nodelet" args="load swarm_interaction/BehaviorPayAttentionToRobotMessages swarm_interaction_manager"
-        name="behavior_pay_attention_to_robot_messages" output="screen"/>
-       <node pkg="nodelet" type="nodelet" args="load swarm_interaction/BehaviorInformPositionToRobots swarm_interaction_manager"
-        name="behavior_inform_position_to_robots" output="screen"/>
+	<node name="behavior_inform_robots" pkg="swarm_interaction"  type="BehaviorInformRobots"  output="screen"/>
+	<node name="behavior_pay_attention_to_robot_messages" pkg="swarm_interaction"  type="BehaviorPayAttentionToRobotMessages"  output="screen"/>
+	<node name="behavior_inform_position_to_robots" pkg="swarm_interaction"  type="BehaviorInformPositionToRobots"  output="screen"/>
  
   </group>
 </launch>
